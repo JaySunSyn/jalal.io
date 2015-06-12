@@ -23,6 +23,7 @@ body {
 	color: #00BCD4;
 	font-size: 34px;
 	font-weight: 300;
+	width: 100% !important;
 }
 
 .page-content{
@@ -32,8 +33,14 @@ body {
 .page{
 	padding-left:10%; 
 	padding-right:10%; 
-	padding-top:15%;
+	padding-top:10%;
+}
 
+.page:before {
+    content: "";
+    display: inline-block;
+    width: 33%;
+    min-height: 140px;
 }
 
 .footer{

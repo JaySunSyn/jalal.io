@@ -88,8 +88,17 @@
     }
 
     .messageBoxFixed paper-input{
-    	width: 86%;
+    	width: 16%;
+    	min-width: 260px;
     }
+
+    paper-textarea{
+    	--paper-input-container:{
+	    	width: 60%;
+	    	min-width: 260px;
+	    };
+    }
+    
 
     .messageBoxFixed{
     	opacity: 1;
@@ -104,7 +113,6 @@
     	min-height: 140px;
     	max-height: 220px;
     	width: 100%;
-    	/*right: 12px;*/
     	z-index: 100;
     	top: 64px;
     	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 2px 9px 1px rgba(0,0,0,.12), 0 4px 2px -2px rgba(0,0,0,.2);
@@ -161,11 +169,13 @@
 				    ></iron-icon>
 	    		</div>
     		</div> 
+
     		<div class="rTableRow"> 
 	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox> Mobile</div> 
 	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_web" on-iron-change="cb_changed"></paper-checkbox> Web</div>
 	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox> Hardware</div> 
     		</div>
+    		
 
     	<!-- ROW 2 -->
 
@@ -213,28 +223,28 @@
     		<div class="rTableRow">
 
 	    		<div class="rTableCell">
-	    			<iron-icon on-tap="ic_tapped" id="mobile"
+	    			<iron-icon on-tap="ic_tapped" id="concept"
 				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_phone_iphone_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div> 
 	    		<div class="rTableCell">
-	    			<iron-icon on-tap="ic_tapped" id="web"
+	    			<iron-icon on-tap="ic_tapped" id="power"
 				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_laptop_mac_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div> 
 	    		<div class="rTableCell">
-	    			<iron-icon on-tap="ic_tapped" id="hardware"
+	    			<iron-icon on-tap="ic_tapped" id="talk"
 				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_watch_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div>
     		</div> 
     		<div class="rTableRow"> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox> Proof of Concept</div> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_web" on-iron-change="cb_changed"></paper-checkbox> Development power</div>
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox> I just want to talk</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_concept" on-iron-change="cb_changed"></paper-checkbox> Proof of Concept</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_power" on-iron-change="cb_changed"></paper-checkbox> Development power</div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_talk" on-iron-change="cb_changed"></paper-checkbox> I just want to talk</div> 
     		</div>
 
 
@@ -331,32 +341,6 @@
         	return msgGreeting + ' ' + msg_p1 + '' + msg_p2 + '' + msg_p3;
         },
 
-        fade:function(element) {
-			    var op = 1;  // initial opacity
-			    var timer = setInterval(function () {
-			        if (op <= 0.1){
-			            clearInterval(timer);
-			            element.style.display = 'none';
-			        }
-			        element.style.opacity = op;
-			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-			        op -= op * 0.1;
-			    }, 10);
-				},
-
-				unfade:function(element) {
-			    var op = 0.1;  // initial opacity
-			    element.style.display = 'block';
-			    var timer = setInterval(function () {
-			        if (op >= 0.8){
-			            clearInterval(timer);
-			        }
-			        element.style.opacity = op;
-			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-			        op += op * 0.1;
-			    }, 10);
-				},
-
         scrollChanged:function(topPosition){
         	console.log(topPosition);
 
@@ -417,8 +401,34 @@
         		
         	};
 
-        }
+        },
 
+
+        fade:function(element) {
+			    var op = 1;  // initial opacity
+			    var timer = setInterval(function () {
+			        if (op <= 0.1){
+			            clearInterval(timer);
+			            element.style.display = 'none';
+			        }
+			        element.style.opacity = op;
+			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			        op -= op * 0.1;
+			    }, 10);
+				},
+
+				unfade:function(element) {
+			    var op = 0.1;  // initial opacity
+			    element.style.display = 'block';
+			    var timer = setInterval(function () {
+			        if (op >= 0.7){
+			            clearInterval(timer);
+			        }
+			        element.style.opacity = op;
+			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			        op += op * 0.1;
+			    }, 10);
+				}
 
 
       });
