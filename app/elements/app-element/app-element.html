@@ -1,0 +1,184 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!-- will be replaced with elements/elements.vulcanized.html -->
+<link rel="import" href="../elements.html">
+<!-- endreplace-->
+
+
+
+<dom-module id="app-element">
+  <style>
+
+  #drawerToolbar{
+  height: 64px !important;
+  background-color: white;
+}
+
+.page-title{
+  color: #00BCD4;
+  font-size: 34px;
+  font-weight: 300;
+}
+
+.page-content{
+
+}
+
+.page{
+  padding-left:10%; 
+  padding-right:10%; 
+  padding-top:10%;
+
+}
+
+.footer{
+  height: 360px;
+  position: relative;
+}
+
+.footer_left{
+  background-color: #009688;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%; /*50.1%;*/
+  padding: 24px;
+}
+
+.footer_right{
+  float: left;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0%; /*50%;*/
+  background: #f9f9f9;
+  padding: 0px;
+}
+.footer short-about{
+  width: 200px;
+}
+
+  </style>
+
+  <template is="dom-bind" id="app">
+
+    <paper-drawer-panel id="paperDrawerPanel" forceNarrow>
+      <div drawer>
+
+        <!-- Drawer Toolbar -->
+        <paper-toolbar id="drawerToolbar">
+          <!-- <span>Menu</span> -->
+          <div>jalal.io</div>
+        </paper-toolbar>
+
+        <!-- Drawer Content -->
+          <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+              <a data-route="home" href="/">
+                <iron-icon icon="home"></iron-icon>
+                <span>Home</span>
+              </a>
+
+              <a data-route="projects" href="/projects">
+                <iron-icon icon="info"></iron-icon>
+                <span>Projects</span>
+              </a>
+
+              <a data-route="contact" href="/contact">
+                <iron-icon icon="mail"></iron-icon>
+                <span>Contact</span>
+              </a>
+          </paper-menu>
+          
+      </div>
+      <paper-header-panel main mode="waterfall-tall">
+        <!-- Main Toolbar -->
+        <paper-toolbar id="mainToolbar">
+          <button tabindex="1" id="paperToggle" paper-drawer-toggle>
+            <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+          </button>
+          <span class="flex"></span>
+
+          <!-- Toolbar icons -->
+          <paper-icon-button icon="refresh"></paper-icon-button>
+          <paper-icon-button icon="search"></paper-icon-button>
+          <div class="middle"></div>
+
+          <!-- Application name -->
+          <div class="appname bottom paper-font-display2">jalal.io</div>
+
+        </paper-toolbar>
+
+        <!-- Main Content -->
+          <iron-pages attr-for-selected="data-route" selected="{{route}}">
+
+            <section data-route="home" class="page">
+                <page-landing></page-landing>
+            </section>
+
+            <section data-route="projects" class="page">
+              <page-projects></page-projects>
+            </section>
+
+            <section data-route="project-info">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">
+                User:<span>{{params.name}}</span>
+                </h2>
+                <div>This is <span>{{params.name}}</span>'s section</div>
+              </paper-material>
+            </section>
+
+            <section data-route="contact">
+              <paper-material elevation="1">
+                <h2 class="paper-font-display2">Contact</h2>
+                <p>This is the contact section</p>
+              </paper-material>
+            </section>
+
+          </iron-pages>
+
+          <div class="footer">
+            <div class="footer_left">
+              <iron-image style="width:200px; height:200px;" sizing="contain" src="/images/pics/jalal300.png"></iron-image>
+              <short-about></short-about>
+              <!-- Place this tag where you want the button to render. -->
+              <a class="github-button" href="https://github.com/jaySunSyn" data-style="mega" data-count-href="/jaySunSyn/followers" data-count-api="/users/jaySunSyn#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @jaySunSyn on GitHub">Follow @jaySunSyn</a>
+
+              <p><a href="https://twitter.com/synappses" class="twitter-follow-button" data-show-count="false">Follow @synappses</a></p>
+            </div>
+            <div class="footer_right">
+
+              
+            </div>
+          </div>
+          </paper-header-panel>
+    </paper-drawer-panel>
+
+    <paper-toast id="caching-complete"
+                 duration="6000"
+                 text="Caching complete! This app will work offline.">
+    </paper-toast>
+
+    <platinum-sw-register auto-register
+                          clients-claim
+                          skip-waiting
+                          on-service-worker-installed="displayInstalledToast">
+      <platinum-sw-cache default-cache-strategy="networkFirst"
+                         precache-file="precache.json">
+      </platinum-sw-cache>
+    </platinum-sw-register>
+
+  </template>
+
+  <script>
+      Polymer({
+
+        is: "app-element"
+
+      });
+
+  </script>
+
+</dom-module>

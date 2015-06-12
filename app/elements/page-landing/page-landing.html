@@ -1,0 +1,419 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-iconset/iron-iconset.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+
+
+<dom-module id="page-landing" is="dom-bind">
+  <style is="custom-style">
+
+  	iron-icon:hover {
+      background: white;
+      border-radius:30px;
+      
+    }
+
+    .big-icon{
+    	height: 8%;
+    	width: 8%;
+    	max-width: 100px;
+    	min-width: 24px;
+    }
+
+    .rTableCell .big-icon{
+    	min-width: 80px;
+    	height: 100%;
+    	width: 100%;
+    }
+
+    .medium-icon{
+    	height: 4%;
+    	width: 4%;
+    	max-width: 50px;
+    	min-width: 25px;
+    	left: 2%;
+    }
+
+    .icon-title{
+    	color: var(--dark-primary-color);
+    	font-size: 20px;
+    	font-weight: 300;
+    }
+
+    .turn{
+    	-webkit-transform: rotate(90deg);
+	    -moz-transform: rotate(90deg);
+	    -o-transform: rotate(90deg);
+	    -ms-transform: rotate(90deg);
+	    transform: rotate(90deg);
+    }
+
+    .rTable 
+    { 
+    	display: block;   	
+    	width: 100%; 
+    } 
+
+    .rTableHeading, .rTableBody, .rTableFoot, .rTableRow
+    {   	
+    	clear: both; 
+    }
+
+    .rTableRow{
+    	padding-bottom: 8%;
+    }
+
+    .rTableCell, .rTableHead 
+    {   	
+    	float: left;   	
+    	height: 10%;   	
+    	overflow: hidden;   	
+    	padding: 3px 1.8%;   	
+    	width: 28%; 
+    	text-align: center;
+    } 
+    .rTable:after {
+    	visibility: hidden;   	
+    	display: block;   	
+    	font-size: 0;   	
+    	content: " ";   	
+    	clear: both;   	
+    	height: 0; 
+    }
+
+    .messageBoxFixed{
+    	opacity: 1;
+    	display: none;
+    	position: fixed;
+    	background-color: lightblue;
+    	height: 10%;
+    	min-height: 180px;
+    	width: 110%;
+    	/*right: 12px;*/
+    	z-index: 100;
+    	top: 64px;
+    	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 2px 9px 1px rgba(0,0,0,.12), 0 4px 2px -2px rgba(0,0,0,.2);
+    }
+
+    .cb{
+    }
+
+  </style>
+
+  <template>
+  	<div class="messageBoxFixed" id="messageBox">
+    		<paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
+    		<span>
+    		<paper-input id="messageBoxEmail" placeholder="Your Email"></paper-input>
+    		<paper-button raised>Send</paper-button>
+    		</span>
+    	</div>
+
+    <h1 class="page-title">Hallo, I guide, assess and develop your startup ideas.</h1>
+
+    <div class="page-content">
+    	
+    
+
+    	<div class="rTable"> 
+
+    	<!-- ROW 1 -->
+
+    	  <div class="rTableRow">
+	    		<div class="rTableCell"></div>
+		    	<div class="rTableCell page-title">What is your idea or product about?</div>
+		    	<div class="rTableCell"></div>
+    		</div> 
+
+    		<div class="rTableRow">
+
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="mobile"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_phone_iphone_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="web"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_laptop_mac_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="hardware"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_watch_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div>
+    		</div> 
+    		<div class="rTableRow"> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox> Mobile</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_web" on-iron-change="cb_changed"></paper-checkbox> Web</div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox> Hardware</div> 
+    		</div>
+
+    	<!-- ROW 2 -->
+
+    	  <div class="rTableRow">
+	    		<div class="rTableCell"></div>
+		    	<div class="rTableCell page-title">In which stage are you?</div>
+		    	<div class="rTableCell"></div>
+    		</div> 
+
+    		<div class="rTableRow">
+
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="idea"
+				    	src="../../bower_components/material-design-icons/image/svg/production/ic_wb_incandescent_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="development"
+				    	src="../../bower_components/material-design-icons/content/svg/production/ic_gesture_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="market"
+				    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_up_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div>
+    		</div> 
+    		<div class="rTableRow"> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_idea" on-iron-change="cb_changed"></paper-checkbox> Idea Stage</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_development" on-iron-change="cb_changed"></paper-checkbox> In Production</div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_market" on-iron-change="cb_changed"></paper-checkbox> Already out there</div> 
+    		</div>
+
+    	<!-- ROW 3 -->
+
+    	  <div class="rTableRow">
+	    		<div class="rTableCell"></div>
+		    	<div class="rTableCell page-title">What do you need?</div>
+		    	<div class="rTableCell"></div>
+    		</div> 
+
+    		<div class="rTableRow">
+
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="mobile"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_phone_iphone_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="web"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_laptop_mac_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div> 
+	    		<div class="rTableCell">
+	    			<iron-icon on-tap="ic_tapped" id="hardware"
+				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_watch_48px.svg" 
+				    	class="big-icon"
+				    ></iron-icon>
+	    		</div>
+    		</div> 
+    		<div class="rTableRow"> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox> Proof of Concept</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_web" on-iron-change="cb_changed"></paper-checkbox> Development power</div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox> I just want to talk</div> 
+    		</div>
+
+
+
+    	</div>
+
+    	<p><p><p><p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_verified_user_48px.svg" 
+	    	class="big-icon"
+	    ></iron-icon>
+
+	    <span class="icon-title">Quick feasibility assesment of your idea</span>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
+	    	class="medium-icon turn"
+	    ></iron-icon>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_check_circle_48px.svg" 
+	    	class="big-icon"
+	    ></iron-icon>
+
+	    <span class="icon-title">Define the minimum Minimum Viable Product</span>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
+	    	class="medium-icon turn"
+	    ></iron-icon>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_check_circle_48px.svg" 
+	    	class="big-icon"
+	    ></iron-icon>
+
+	    <span class="icon-title">Start working on it</span>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
+	    	class="medium-icon turn"
+	    ></iron-icon>
+
+	    <p><iron-icon 
+	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_up_48px.svg" 
+	    	class="big-icon"
+	    ></iron-icon>
+
+	    <span class="icon-title">Scale and Grow</span>
+
+
+
+    </div>
+
+  </template>
+
+  <script>
+      Polymer({
+
+        is: "page-landing",
+
+        properties:{
+
+        	msgBoxVisible:Boolean,
+
+        	msgGreeting:{
+        		type:String,
+        		value:'Hi Jalal,'
+        	},
+
+        	msgTxt:{
+	        	type:String,
+	        	computed:'_computeMsg(msgGreeting, msg_p1, msg_p2, msg_p3)'
+	        },
+
+	        msg_p1:{
+	        	type:String,
+	        	value:'',
+	        	notify:true
+	        },
+	        msg_p2:{
+	        	type:String,
+	        	value:'',
+	        	notify:true
+	        },
+	        msg_p3:{
+	        	type:String,
+	        	value:'',
+	        	notify:true
+	        }
+
+        },
+
+        _computeMsg:function(msgGreeting, msg_p1, msg_p2, msg_p3){
+        	return msgGreeting + ' ' + msg_p1 + '' + msg_p2 + '' + msg_p3;
+        },
+
+        fade:function(element) {
+			    var op = 1;  // initial opacity
+			    var timer = setInterval(function () {
+			        if (op <= 0.1){
+			            clearInterval(timer);
+			            element.style.display = 'none';
+			        }
+			        element.style.opacity = op;
+			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			        op -= op * 0.1;
+			    }, 10);
+				},
+
+				unfade:function(element) {
+			    var op = 0.1;  // initial opacity
+			    element.style.display = 'block';
+			    var timer = setInterval(function () {
+			        if (op >= 0.8){
+			            clearInterval(timer);
+			        }
+			        element.style.opacity = op;
+			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			        op += op * 0.1;
+			    }, 10);
+				},
+
+        scrollChanged:function(topPosition){
+        	console.log(topPosition);
+
+        	if (topPosition<40) {
+        		if (this.msgBoxVisible) {
+        			this.fade(this.$.messageBox);
+        			this.msgBoxVisible=false;
+        		};
+        		
+        	} else{
+        		if (!this.msgBoxVisible) {
+        			this.unfade(this.$.messageBox);
+        			this.msgBoxVisible=true;
+        		};
+        	};
+
+        },
+
+        ic_tapped:function(e){
+        	var cb = document.getElementById('cb_' + e.target.parentElement.id);
+
+        	if (cb) {
+        		cb.checked=true;
+        	};
+        	
+        },
+
+        uncheckAll:function(className,except){
+
+        	var rowElements = document.getElementsByClassName(className);
+
+        	for (var i = rowElements.length - 1; i >= 0; i--) {
+        		if (rowElements[i] != except) {
+        			rowElements[i].checked = false;
+        		};	
+        	};
+
+        },
+
+        cb_changed:function(e){
+        	if (e.target.checked) {
+
+	        	switch(e.target.id){
+	        		case 'cb_mobile':
+	        			this.msg_p1 = 'I have a mobile product/idea I want to talk with you about!';
+	        			break;
+
+	        		case 'cb_web':
+	        			this.msg_p1 = 'I have a web product/idea I want to talk with you about!';
+	        			break;
+
+	        		case 'cb_hardware':
+	        			this.msg_p1 = 'I have a hardware product/idea I want to talk with you about!';
+	        			break;
+	        	}
+
+	        	this.uncheckAll(e.target.getAttribute('row'),e.target);	
+        		
+        	};
+
+        }
+
+
+
+      });
+
+  </script>
+
+</dom-module>
