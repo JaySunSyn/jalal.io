@@ -3,11 +3,15 @@
 <link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-iconset/iron-iconset.html">
 <link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+
+<link rel="import" href="../service-email/service-email.html">
 
 
 <dom-module id="page-landing" is="dom-bind">
@@ -121,16 +125,24 @@
     .cb{
     }
 
+    #toast{
+        right: 10px; 
+        left: auto;
+    }
+
   </style>
 
   <template>
   	<div class="messageBoxFixed" id="messageBox">
     		<paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
     		<span>
-    		<paper-input id="messageBoxEmail" placeholder="Your Email"></paper-input>
-    		<paper-button raised>Send</paper-button>
+    		<paper-input id="messageBoxEmail" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
+    		<paper-button on-tap="sendTapped" raised>Send</paper-button>
+            <paper-spinner id="sendSpinner"></paper-spinner>
     		</span>
     	</div>
+
+    <img style="float:right;" src="../../images/pics/balloonGirl.png" height="180px;">
 
     <!-- <h1 class="page-title"></h1> -->
 
@@ -251,7 +263,7 @@
 
     	</div>
 
-    	<p><p><p><p><iron-icon 
+<!--     	<p><p><p><p><iron-icon 
 	    	src="../../bower_components/material-design-icons/action/svg/production/ic_verified_user_48px.svg" 
 	    	class="big-icon"
 	    ></iron-icon>
@@ -292,11 +304,16 @@
 	    	class="big-icon"
 	    ></iron-icon>
 
-	    <span class="icon-title">Scale and Grow</span>
+	    <span class="icon-title">Scale and Grow</span> -->
 
 
 
     </div>
+
+    <paper-toast id="toast"></paper-toast>
+    <service-email id="serviceEmail" message="[[msgTxt]]" from="[[emailFrom]]" 
+        on-sent="emailSent"
+        on-error="emailError"></service-email>
 
   </template>
 
@@ -383,7 +400,10 @@
         cb_changed:function(e){
         	if (e.target.checked) {
 
+                this.$.messageBox.hidden=false;
+
 	        	switch(e.target.id){
+                    // 1
 	        		case 'cb_mobile':
 	        			this.msg_p1 = 'I have a mobile product/idea I want to talk with you about!';
 	        			break;
@@ -395,6 +415,30 @@
 	        		case 'cb_hardware':
 	        			this.msg_p1 = 'I have a hardware product/idea I want to talk with you about!';
 	        			break;
+                    // 2
+                    case 'cb_idea':
+                        this.msg_p2 = ' It is currently in the idea stage';
+                        break;
+
+                    case 'cb_development':
+                        this.msg_p2 = ' The development has already started';
+                        break;
+
+                    case 'cb_market':
+                        this.msg_p2 = ' It is already out in the market';
+                        break;
+                    // 3
+                    case 'cb_concept':
+                        this.msg_p3 = ' and I want a Proof of Concept in form of a prototype or similar.';
+                        break;
+
+                    case 'cb_power':
+                        this.msg_p3 = ' and I would need some additional development power.';
+                        break;
+
+                    case 'cb_talk':
+                        this.msg_p3 = ' and I would like to ask you some questions about it.';
+                        break;
 	        	}
 
 	        	this.uncheckAll(e.target.getAttribute('row'),e.target);	
@@ -403,6 +447,27 @@
 
         },
 
+        sendTapped:function(){
+            this.$.sendSpinner.active = true;
+            this.$.serviceEmail.sendMail();
+        },
+
+        emailError:function(event,response){
+            this.$.sendSpinner.active = false;
+            this.$.toast.text = response.status;
+            this.$.toast.show();
+        },
+
+        emailSent:function(event,response){
+            this.$.sendSpinner.active = false;
+            this.$.toast.text = response.status;
+            this.$.toast.show();
+
+            if (response.status == 'sent') {
+                this.$.messageBox.hidden=true;
+            };
+            
+        },
 
         fade:function(element) {
 			    var op = 1;  // initial opacity
@@ -417,18 +482,18 @@
 			    }, 10);
 				},
 
-				unfade:function(element) {
-			    var op = 0.1;  // initial opacity
-			    element.style.display = 'block';
-			    var timer = setInterval(function () {
-			        if (op >= 0.7){
-			            clearInterval(timer);
-			        }
-			        element.style.opacity = op;
-			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-			        op += op * 0.1;
-			    }, 10);
-				}
+		unfade:function(element) {
+	    var op = 0.1;  // initial opacity
+	    element.style.display = 'block';
+	    var timer = setInterval(function () {
+	        if (op >= 0.7){
+	            clearInterval(timer);
+	        }
+	        element.style.opacity = op;
+	        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+	        op += op * 0.1;
+	    }, 10);
+		}
 
 
       });

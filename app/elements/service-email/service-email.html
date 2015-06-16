@@ -1,0 +1,67 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="service-email">
+  <template>
+
+    <iron-ajax id="post"
+      url="https://mandrillapp.com/api/1.0/messages/send.json"
+      on-response="postResponded"
+      on-error="error"
+      handleAs="json"
+      method="post"
+      last-response="{{postResponse}}"
+      body="[[body]]"
+    ></iron-ajax>
+
+
+
+  </template>
+
+  <script>
+
+      Polymer({
+
+        is: 'service-email',
+
+        properties:{
+
+          postResponse:Object,
+
+          message:{
+            type:String,
+            value:''
+          },
+
+          from:{
+            type:String,
+            value:'sender'
+          },
+
+          body:{
+            type:String,
+            value:'',
+            computed:'_computeBody(from,message)'
+          }
+        },
+
+        _computeBody:function(from,message){
+          return '{"key": "Ef6CuxGmRBaZdziVaReLMw","message": {"text": "' + message + '","subject": "jalal.io message","from_email": "' + from + '","from_name": "' + from + '","to": [{"email": "jfathi.mail@gmail.com","name": "Jalal Fathi","type": "to"}]}}'
+        },
+
+        sendMail:function(){
+          this.$.post.generateRequest();
+        },
+
+        postResponded:function(){
+          this.fire('sent',this.postResponse[0]);
+        },
+
+        error:function(){
+          this.fire('error',this.postResponse[0]);
+        }
+        
+      });
+
+  </script>
+</dom-module>
