@@ -128,19 +128,20 @@
     #toast{
         right: 10px; 
         left: auto;
+        z-index: 100;
     }
 
   </style>
 
   <template>
   	<div class="messageBoxFixed" id="messageBox">
-    		<paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
-    		<span>
+    	<paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
+    	<span>
     		<paper-input id="messageBoxEmail" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
     		<paper-button on-tap="sendTapped" raised>Send</paper-button>
             <paper-spinner id="sendSpinner"></paper-spinner>
-    		</span>
-    	</div>
+    	</span>
+    </div>
 
     <img style="float:right;" src="../../images/pics/balloonGirl.png" height="180px;">
 
@@ -236,25 +237,25 @@
 
 	    		<div class="rTableCell">
 	    			<iron-icon on-tap="ic_tapped" id="concept"
-				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_phone_iphone_48px.svg" 
+				    	src="../../bower_components/material-design-icons/action/svg/production/ic_group_work_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div> 
 	    		<div class="rTableCell">
 	    			<iron-icon on-tap="ic_tapped" id="power"
-				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_laptop_mac_48px.svg" 
+				    	src="../../bower_components/material-design-icons/social/svg/production/ic_people_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div> 
 	    		<div class="rTableCell">
 	    			<iron-icon on-tap="ic_tapped" id="talk"
-				    	src="../../bower_components/material-design-icons/hardware/svg/production/ic_watch_48px.svg" 
+				    	src="../../bower_components/material-design-icons/action/svg/production/ic_face_48px.svg" 
 				    	class="big-icon"
 				    ></iron-icon>
 	    		</div>
     		</div> 
     		<div class="rTableRow"> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_concept" on-iron-change="cb_changed"></paper-checkbox> Proof of Concept</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_concept" on-iron-change="cb_changed"></paper-checkbox> Technical feasibility</div> 
 	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_power" on-iron-change="cb_changed"></paper-checkbox> Development power</div>
 	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_talk" on-iron-change="cb_changed"></paper-checkbox> I just want to talk</div> 
     		</div>
@@ -320,7 +321,7 @@
   <script>
       Polymer({
 
-        is: "page-landing",
+        is: 'page-landing',
 
         properties:{
 
@@ -429,7 +430,7 @@
                         break;
                     // 3
                     case 'cb_concept':
-                        this.msg_p3 = ' and I want a Proof of Concept in form of a prototype or similar.';
+                        this.msg_p3 = ' and I want to know if and how it is technical realizable.';
                         break;
 
                     case 'cb_power':

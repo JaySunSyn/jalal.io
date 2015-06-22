@@ -32,11 +32,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var pageLanding = document.querySelector('#pageLanding');
       pageLanding.scrollChanged(scroller.scrollTop);
 
-  });
+    });
+
+
+    // get scroll advice
+    var pageProjects = document.querySelector('#pageProjects');
+    pageProjects.addEventListener('scroll-advice', function(event) {
+      var element = document.getElementById(event.detail);
+      
+      var yPosition = 0;
+    
+      // while(element) {
+      //     yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+      // }
+
+      var headerPanel = document.querySelector('#headerPanel');
+      // headerPanel.measureHeaderHeight;
+      console.log(headerPanel.header.offsetHeight);
+      headerPanel.scroller.scrollTop = element.offsetTop; 
+
+    });
 
   });
-
-  
 
 
   // See https://github.com/Polymer/polymer/issues/1381

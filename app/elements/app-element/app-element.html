@@ -9,7 +9,7 @@
 <dom-module id="app-element">
   <style>
 
-  #drawerToolbar{
+#drawerToolbar{
   height: 64px !important;
   background-color: white;
 }
@@ -42,7 +42,7 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 100%; /*50.1%;*/
+  width: 50.1%;
   padding: 24px;
 }
 
@@ -52,12 +52,12 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 0%; /*50%;*/
+  width: 50%;
   background: #f9f9f9;
   padding: 0px;
 }
 .footer short-about{
-  width: 200px;
+  width: 300px;
 }
 
   </style>
@@ -140,18 +140,25 @@
           </iron-pages>
 
           <div class="footer">
+
             <div class="footer_left">
-              <iron-image style="width:200px; height:200px;" sizing="contain" src="/images/pics/jalal300.png"></iron-image>
+              <iron-image style="left:30px; width:180px; height:180px;" sizing="contain" src="/images/pics/jalal300.png"></iron-image>
               <short-about></short-about>
               <!-- Place this tag where you want the button to render. -->
               <a class="github-button" href="https://github.com/jaySunSyn" data-style="mega" data-count-href="/jaySunSyn/followers" data-count-api="/users/jaySunSyn#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @jaySunSyn on GitHub">Follow @jaySunSyn</a>
 
               <p><a href="https://twitter.com/synappses" class="twitter-follow-button" data-show-count="false">Follow @synappses</a></p>
             </div>
-            <div class="footer_right">
 
-              
+            <div class="footer_right">
+              <paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
+              <span>
+                <paper-input id="messageBoxEmail" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
+                <paper-button on-tap="sendTapped" raised>Send</paper-button>
+                    <paper-spinner id="sendSpinner"></paper-spinner>
+              </span>
             </div>
+
           </div>
           </paper-header-panel>
     </paper-drawer-panel>
