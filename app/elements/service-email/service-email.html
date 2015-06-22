@@ -38,22 +38,29 @@
             value:'sender'
           },
 
+          fromname:{
+            type:String,
+            value:'senderName'          
+          },
+
           body:{
             type:String,
             value:'',
-            computed:'_computeBody(from,message)'
+            computed:'_computeBody(from,message,fromname)'
           }
         },
 
-        _computeBody:function(from,message){
-          return '{"key": "Ef6CuxGmRBaZdziVaReLMw","message": {"text": "' + message + '","subject": "jalal.io message","from_email": "' + from + '","from_name": "' + from + '","to": [{"email": "jfathi.mail@gmail.com","name": "Jalal Fathi","type": "to"}]}}';
+        _computeBody:function(from,message,fromname){
+          return '{"key": "Ef6CuxGmRBaZdziVaReLMw","message": {"text": "' + message + '","subject": "jalal.io message","from_email": "' + from + '","from_name": "' + fromname + '","to": [{"email": "jfathi.mail@gmail.com","name": "Jalal Fathi","type": "to"}]}}';
         },
 
         sendMail:function(){
+          console.log(this.body);
           this.$.post.generateRequest();
         },
 
         postResponded:function(){
+          console.log(this.postResponse[0]);
           this.fire('sent',this.postResponse[0]);
         },
 

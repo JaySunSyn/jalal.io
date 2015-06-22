@@ -42,6 +42,7 @@ body {
 	padding-left:10%; 
 	padding-right:10%; 
 	padding-top:48px;
+  padding-bottom:48px;
 }
 
 .landing{
@@ -66,7 +67,7 @@ body {
   left: 0;
   position: absolute;
   top: 0;
-  width: 100%; /*50.1%;*/
+  width: 50.1%;
   padding: 24px;
 }
 
@@ -76,10 +77,10 @@ body {
   position: absolute;
   right: 0;
   top: 0;
-  width: 0%; /*50%;*/
-  background: #f9f9f9;
-  padding: 0px;
+  width: 50%;
+  background: #009688;
+  padding: 24px;
 }
 .footer short-about{
-	width: 200px;
+	width: 300px;
 }

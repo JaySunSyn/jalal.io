@@ -461,7 +461,12 @@
 
         emailSent:function(event,response){
             this.$.sendSpinner.active = false;
-            this.$.toast.text = response.status;
+            if (response.status == 'rejected') {
+                this.$.toast.text = response.reject_reason;
+            }else{
+                this.$.toast.text = response.status;
+            };
+            
             this.$.toast.show();
 
             if (response.status == 'sent') {

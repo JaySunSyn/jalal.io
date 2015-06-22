@@ -1,0 +1,92 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-iconset/iron-iconset.html">
+<link rel="import" href="../../bower_components/iron-iconset-svg/iron-iconset-svg.html">
+
+<link rel="import" href="../service-email/service-email.html">
+
+
+<dom-module id="page-contact" is="dom-bind">
+  <style is="custom-style">
+     #toastContact{
+        right: 10px; 
+        left: auto;
+        z-index: 100;
+    }
+
+  </style>
+
+  <template>
+
+  <div>
+
+    <paper-textarea value="{{msgTxt}}"></paper-textarea>
+    <span>
+      <paper-input style="width:300px;" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
+      <paper-input style="width:300px;" value="{{fromname}}" placeholder="Your Name"></paper-input>
+      <paper-button on-tap="sendTapped" raised>Send</paper-button>
+      <paper-spinner id="sendSpinnerContact"></paper-spinner>
+    </span>
+
+    <paper-toast id="toastContact"></paper-toast>
+    <service-email id="serviceEmailContact" message="[[msgTxt]]" from="[[emailFrom]]" fromname="[[fromname]]"
+        on-sent="emailSent"
+        on-error="emailError"></service-email>
+
+  </template>
+
+  <script>
+      Polymer({
+
+        is: 'page-contact',
+
+        properties:{
+            msgTxt:{
+                type:String,
+                value:'Write me a message'
+            }
+        },
+
+        sendTapped:function(){
+            console.log(this.fromname);
+            this.$.sendSpinnerContact.active = true;
+            this.$.serviceEmailContact.sendMail();
+        },
+
+        emailError:function(event,response){
+            this.$.sendSpinnerContact.active = false;
+            this.$.toastContact.text = response.status;
+            this.$.toastContact.show();
+        },
+
+        emailSent:function(event,response){
+            this.$.sendSpinnerContact.active = false;            
+
+            if (response.status == 'rejected') {
+                this.$.toastContact.text = response.reject_reason;
+            }else{
+                this.$.toastContact.text = response.status;
+            };
+
+            this.$.toastContact.show();
+
+            if (response.status == 'sent') {
+                this.msgTxt='';
+                this.emailFrom='';
+                this.fromName='';
+            };
+            
+        }
+
+      });
+
+  </script>
+
+</dom-module>
