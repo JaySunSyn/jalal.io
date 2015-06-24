@@ -114,7 +114,7 @@
     	margin-left: -10%;
     	background-color: lightblue;
     	height: 10%;
-    	min-height: 140px;
+    	min-height: 160px;
     	max-height: 220px;
     	width: 100%;
     	z-index: 100;
@@ -264,51 +264,6 @@
 
     	</div>
 
-<!--     	<p><p><p><p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_verified_user_48px.svg" 
-	    	class="big-icon"
-	    ></iron-icon>
-
-	    <span class="icon-title">Quick feasibility assesment of your idea</span>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
-	    	class="medium-icon turn"
-	    ></iron-icon>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_check_circle_48px.svg" 
-	    	class="big-icon"
-	    ></iron-icon>
-
-	    <span class="icon-title">Define the minimum Minimum Viable Product</span>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
-	    	class="medium-icon turn"
-	    ></iron-icon>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_check_circle_48px.svg" 
-	    	class="big-icon"
-	    ></iron-icon>
-
-	    <span class="icon-title">Start working on it</span>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_flat_48px.svg" 
-	    	class="medium-icon turn"
-	    ></iron-icon>
-
-	    <p><iron-icon 
-	    	src="../../bower_components/material-design-icons/action/svg/production/ic_trending_up_48px.svg" 
-	    	class="big-icon"
-	    ></iron-icon>
-
-	    <span class="icon-title">Scale and Grow</span> -->
-
-
-
     </div>
 
     <paper-toast id="toast"></paper-toast>
@@ -360,8 +315,8 @@
         },
 
         scrollChanged:function(topPosition){
-        	console.log(topPosition);
 
+            // fade/unfade message box at scroll position
         	if (topPosition<40) {
         		if (this.msgBoxVisible) {
         			this.fade(this.$.messageBox);
@@ -374,6 +329,13 @@
         			this.msgBoxVisible=true;
         		};
         	};
+
+            // make it less transparent with scroll activity
+            op = parseFloat(this.$.messageBox.style.opacity);
+            op += parseFloat(topPosition) * 0.000005;
+
+            this.$.messageBox.style.opacity = op;
+            this.$.messageBox.style.filter = 'alpha(opacity=' + op * 100 + ")";
 
         },
 
