@@ -19,45 +19,19 @@
   }
 
   .project-text{
-    /*margin-left: 120px;*/
   }
 
   .project-title{
 
   }
 
-   .rTable 
-    { 
-/*      display: block;     
-      width: 100%; */
-    } 
-
-    .rTableHeading, .rTableBody, .rTableFoot, .rTableRow
-    {     
-      /*clear: both; */
+  @media (max-width: 400px){
+    .project-image{
+      width:250px; 
+      height:200px;
     }
+  }
 
-    .rTableRow{
-/*      padding-bottom: 8%;
-      padding-top: 48px;*/
-    }
-
-    .rTableCell, .rTableHead 
-    {     
-/*      float: left;    
-      height: 10%;    
-      overflow: hidden;     
-      padding: 3px 1.8%;
-      width: 40%;   */ 
-    } 
-    .rTable:after {
-/*      visibility: hidden;     
-      display: block;     
-      font-size: 0;     
-      content: " ";     
-      clear: both;    
-      height: 0; */
-    }
 
 
   </style>
@@ -67,16 +41,9 @@
 
     <div class="page-content">
 
-      <div class="rTable"> 
-
         <!-- ROW 1 -->
 
-          <div class="rTableRow" id="project_1">
-            <div class="rTableCell">
-              
-              
-            </div>
-            <div class="rTableCell">
+            <div>
               <span class="page-heading">Asking Ninja</span>
               <p class="project-text">
                 is a survey tool for investment funds and stock companies.
@@ -100,7 +67,7 @@
                   <ul>
                     <li>Polymer</li>
                     <li>Python</li>
-                    <li>MySQL Procedures</li>
+                    <li>MySQL</li>
                     <li>Frapi</li>
                   </ul>
                 </p>
@@ -110,13 +77,8 @@
               <iron-image class="project-image" sizing="contain" preload
                   src="http://storage.googleapis.com/web-jalalio/an-report.png"></iron-image>
             </div>
-          </div>
 
-          <div class="rTableRow" id="project_1">
-            <div class="rTableCell">
-              
-            </div>
-            <div class="rTableCell">
+            <div>
               <span class="page-heading">ARAX Manager</span>
               <p class="project-text">
                 manages the communication, payments, tax reports and other cool stuff. It also integrates an internal trading platform for company shares based on direct investments.
@@ -166,13 +128,8 @@
               <iron-image class="project-image" sizing="contain" preload
                   src="http://storage.googleapis.com/web-jalalio/ax-eer.png"></iron-image>
             </div>
-          </div> 
 
-          <div class="rTableRow" id="project_2">
-            <div class="rTableCell">
-
-            </div>
-            <div class="rTableCell">
+            <div>
               <span class="page-heading">FlyFlap</span>
               <p class="project-text">
                 Get the cheapest Airport Taxi with one tap. FlyFlap connects people who want to get to the airport with respective taxi driver.
@@ -207,17 +164,11 @@
               </p>
               <iron-image class="project-image" sizing="contain" preload
                   src="http://storage.googleapis.com/web-jalalio/ff-backend.png"></iron-image>
-            <iron-image class="project-image" sizing="contain" preload
+              <iron-image class="project-image" sizing="contain" preload
                   src="http://storage.googleapis.com/web-jalalio/ff-apps.png"></iron-image>
             </div>
-          </div>
 
-
-          <div class="rTableRow" id="project_3">
-            <div class="rTableCell">
-              
-            </div>
-            <div class="rTableCell">
+            <div>
               <span class="page-heading">Facebrite</span>
               <p class="project-text">
                 is a meeting management tool for Eventbrite event organizer and connects you as an attendee with your fellow event attendees. Facebrite allows you to arrange face-to-face meetings in given time slots.
@@ -267,8 +218,53 @@
               <iron-image class="project-image" sizing="contain" preload
                   src="http://storage.googleapis.com/web-jalalio/fb-question.png"></iron-image>
             </div>
+
+            <div>
+              <span class="page-heading">Undergogo.com</span>
+              <p class="project-text">
+
+                <p>
+                  A booking platform in development for experience travelling and retreat organizers.
+                </p>
+
+                <p><strong>Tech Stack</strong>
+                    <ul>
+                      <li>Polymer</li>
+                      <li>Google Cloud Endpoints</li>
+                      <li>NDB</li>
+                    </ul>
+                </p>
+              </p>
+              <iron-image class="project-image" sizing="contain" preload
+                  src="https://storage.googleapis.com/web-jalalio/ug-front.png"></iron-image>
+              <iron-image class="project-image" sizing="contain" preload
+                  src="https://storage.googleapis.com/web-jalalio/ug-organizer.png"></iron-image>
+            </div>
+
+            <div>
+              <span class="page-heading">Elfycares.com</span>
+              <p class="project-text">
+
+                <p>
+                  We enable families to manage the care of their loved ones. In development.
+                </p>
+
+                <p><strong>Tech Stack</strong>
+                    <ul>
+                      <li>Polymer</li>
+                      <li>Google Cloud Endpoints</li>
+                      <li>NDB</li>
+                      <li>Objective C</li>
+                    </ul>
+                </p>
+              </p>
+              <iron-image class="project-image" sizing="contain" preload
+                  src="https://storage.googleapis.com/web-jalalio/ec-front.png"></iron-image>
+              <iron-image class="project-image" sizing="contain" preload
+                  src="https://storage.googleapis.com/web-jalalio/ec-icons.png"></iron-image>
+            </div>
+
           </div> 
-      </div>
 
     </div>
 

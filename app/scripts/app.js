@@ -41,14 +41,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var element = document.getElementById(event.detail);
       
       var yPosition = 0;
-    
-      // while(element) {
-      //     yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-      // }
 
       var headerPanel = document.querySelector('#headerPanel');
-      // headerPanel.measureHeaderHeight;
-      console.log(headerPanel.header.offsetHeight);
       headerPanel.scroller.scrollTop = element.offsetTop; 
 
     });
@@ -63,15 +57,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // Ensure the drawer is hidden on desktop/tablet
     var drawerPanel = document.querySelector('#paperDrawerPanel');
     // drawerPanel.forceNarrow = true;
+    drawerPanel.responsiveWidth = "800px"
+
+    if (window.innerWidth < 450) {
+      var headerPanel = document.querySelector('#headerPanel');
+      headerPanel.mode = 'standard';
+    };
+
   });
 
-  // Close drawer after menu item is selected if drawerPanel is narrow
-  app.onMenuSelect = function() {
-    var drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
-    }
-  };
+    // Close drawer after menu item is selected if drawerPanel is narrow
+    app.onMenuSelect = function() {
+      var drawerPanel = document.querySelector('#paperDrawerPanel');
+      if (drawerPanel.narrow) {
+        drawerPanel.closeDrawer();
+      }
+    };
 
 })(document);
 

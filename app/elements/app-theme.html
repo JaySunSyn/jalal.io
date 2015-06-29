@@ -114,9 +114,13 @@ paper-menu a {
   padding: 8px;
 }
 
-/* Breakpoints */
+.appname {
+  font-size: 18px;
+  line-height: 24px !important;
+  padding-left: 12px;
+  padding-top: 3px;
+}
 
-/* Small */
 
 @media (max-width: 600px) {
 
@@ -137,6 +141,9 @@ paper-menu a {
     width: calc(97.33% - 32px);
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .appname {
+    font-size: 18px;
   }
 
   #drawer .paper-toolbar {
@@ -160,10 +167,6 @@ paper-menu a {
     padding-bottom: 0px;
   }
 
-  .appname {
-    font-size: 24px;
-    padding-bottom: 0px;
-  }
 }
 
 @media (max-width: 450px) {

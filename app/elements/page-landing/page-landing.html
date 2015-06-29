@@ -26,8 +26,15 @@
     .big-icon{
     	height: 8%;
     	width: 8%;
-    	max-width: 100px;
-    	min-width: 24px;
+    	max-height: 100px;
+    	min-height: 24px;
+        max-width: 100px;
+        min-width: 24px;
+    }
+
+    .imageRight{
+        float:right;
+        display: relative;
     }
 
     .rTableCell .big-icon{
@@ -98,7 +105,7 @@
 
     paper-textarea{
     	--paper-input-container:{
-	    	width: 60%;
+	    	width: 80%;
 	    	min-width: 260px;
 	    };
     }
@@ -108,14 +115,11 @@
     	opacity: 1;
     	display: none;
     	position: fixed;
-
     	padding: 48px;
     	padding-top: 12px;
+        padding-bottom: 12px;
     	margin-left: -10%;
     	background-color: lightblue;
-    	height: 10%;
-    	min-height: 160px;
-    	max-height: 220px;
     	width: 100%;
     	z-index: 100;
     	top: 64px;
@@ -125,25 +129,38 @@
     .cb{
     }
 
+    .cbText{
+        padding-top: 6px;
+    }
+
     #toast{
         right: 10px; 
         left: auto;
         z-index: 100;
     }
 
+
+    @media(max-width: 600px){
+        .messageBoxFixed{
+            top: 56px;
+        }
+    }
+
+    @media(max-width: 450px){
+        .messageBoxFixed{
+            position: relative;
+        }
+
+        .imageRight{
+            display: none;
+        }
+    }
+
   </style>
 
   <template>
-  	<div class="messageBoxFixed" id="messageBox">
-    	<paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
-    	<span>
-    		<paper-input id="messageBoxEmail" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
-    		<paper-button on-tap="sendTapped" raised>Send</paper-button>
-            <paper-spinner id="sendSpinner"></paper-spinner>
-    	</span>
-    </div>
 
-    <img style="float:right;" src="../../images/pics/balloonGirl.png" height="180px;">
+    <img class="imageRight" src="../../images/pics/balloonGirl.png" height="180px;">
 
     <!-- <h1 class="page-title"></h1> -->
 
@@ -184,9 +201,9 @@
     		</div> 
 
     		<div class="rTableRow"> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox> Mobile</div> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_web" on-iron-change="cb_changed"></paper-checkbox> Web</div>
-	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox> Hardware</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_mobile" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Mobile</div></div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_web" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Web</div></div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_1" row="row_1" id="cb_hardware" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Hardware</div></div> 
     		</div>
     		
 
@@ -220,9 +237,9 @@
 	    		</div>
     		</div> 
     		<div class="rTableRow"> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_idea" on-iron-change="cb_changed"></paper-checkbox> Idea Stage</div> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_development" on-iron-change="cb_changed"></paper-checkbox> In Production</div>
-	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_market" on-iron-change="cb_changed"></paper-checkbox> Already out there</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_idea" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Idea Stage</div></div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_development" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">In Production</div></div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_2" row="row_2" id="cb_market" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Already out there</div></div> 
     		</div>
 
     	<!-- ROW 3 -->
@@ -255,14 +272,22 @@
 	    		</div>
     		</div> 
     		<div class="rTableRow"> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_concept" on-iron-change="cb_changed"></paper-checkbox> Technical feasibility</div> 
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_power" on-iron-change="cb_changed"></paper-checkbox> Development power</div>
-	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_talk" on-iron-change="cb_changed"></paper-checkbox> I just want to talk</div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_concept" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Technical feasibility</div></div> 
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_power" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">Development power</div></div>
+	    		<div class="rTableCell"><paper-checkbox class="cb row_3" row="row_3" id="cb_talk" on-iron-change="cb_changed"></paper-checkbox><div class="cbText">I just want to talk</div></div> 
     		</div>
 
-
-
     	</div>
+
+        <!-- message box -->
+        <div class="messageBoxFixed" id="messageBox">
+            <paper-textarea id="messageBoxText" value="{{msgTxt}}"></paper-textarea>
+            <span>
+                <paper-input id="messageBoxEmail" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
+                <paper-button on-tap="sendTapped" raised>Send</paper-button>
+                <paper-spinner id="sendSpinner"></paper-spinner>
+            </span>
+        </div>
 
     </div>
 
