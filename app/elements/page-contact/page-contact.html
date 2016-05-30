@@ -27,7 +27,7 @@
 
   <div>
 
-    <paper-textarea value="{{msgTxt}}"></paper-textarea>
+    <paper-textarea placeholder="Write me a message" value="{{msgTxt}}"></paper-textarea>
     <span>
       <paper-input style="width:300px;" value="{{emailFrom}}" placeholder="Your Email"></paper-input>
       <paper-input style="width:300px;" value="{{fromname}}" placeholder="Your Name"></paper-input>
@@ -49,9 +49,23 @@
 
         properties:{
             msgTxt:{
-                type:String,
-                value:'Write me a message'
-            }
+              type:String,
+              value:'',
+              notify: true
+            },
+
+            fromname: {
+              type: String,
+              value: '',
+              notify: true
+            },
+
+            emailFrom: {
+              type: String,
+              value: '',
+              notify: true
+            }            
+              
         },
 
         sendTapped:function(){
@@ -80,7 +94,7 @@
             if (response.status == 'sent') {
                 this.msgTxt='';
                 this.emailFrom='';
-                this.fromName='';
+                this.fromname='';
             };
             
         }

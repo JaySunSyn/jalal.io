@@ -35,7 +35,7 @@
 
           from:{
             type:String,
-            value:'sender'
+            value:'@jalal.io'
           },
 
           fromname:{
@@ -51,7 +51,7 @@
         },
 
         _computeBody:function(from,message,fromname){
-          return '{"key": "Ef6CuxGmRBaZdziVaReLMw","message": {"text": "' + message + '","subject": "jalal.io message","from_email": "' + from + '","from_name": "' + fromname + '","to": [{"email": "jfathi.mail@gmail.com","name": "Jalal Fathi","type": "to"}]}}';
+          return '{"key": "ew0dauNJhIcpw2SQz-E0gw","message": {"text": "' + message + ' ### sender:' + from + '","subject": "jalal.io message","from_email": "' + 'j@jalal.io' + '","from_name": "' + fromname + '","to": [{"email": "jfathi.mail@gmail.com","name": "Jalal Fathi","type": "to"}]}}';
         },
 
         sendMail:function(){

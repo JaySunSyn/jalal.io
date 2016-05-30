@@ -118,9 +118,9 @@
     	padding: 48px;
     	padding-top: 12px;
         padding-bottom: 12px;
-    	margin-left: -10%;
+    	left: 256px;
     	background-color: lightblue;
-    	width: 100%;
+    	width: calc(100% - 256px);
     	z-index: 100;
     	top: 64px;
     	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 2px 9px 1px rgba(0,0,0,.12), 0 4px 2px -2px rgba(0,0,0,.2);
@@ -142,7 +142,9 @@
 
     @media(max-width: 600px){
         .messageBoxFixed{
-            top: 56px;
+            top: 46px;
+            left: 0;
+            width: 100%;
         }
     }
 
