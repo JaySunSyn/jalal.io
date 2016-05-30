@@ -454,13 +454,13 @@
                 this.$.toast.text = response.reject_reason;
             }else{
                 this.$.toast.text = response.status;
-            };
+            }
             
             this.$.toast.show();
 
             if (response.status == 'sent') {
                 this.$.messageBox.hidden=true;
-            };
+            }
             
         },
 
@@ -472,7 +472,7 @@
 			            element.style.display = 'none';
 			        }
 			        element.style.opacity = op;
-			        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			        element.style.filter = 'alpha(opacity=' + op * 100 + ')';
 			        op -= op * 0.1;
 			    }, 10);
 				},
@@ -485,7 +485,7 @@
 	            clearInterval(timer);
 	        }
 	        element.style.opacity = op;
-	        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+	        element.style.filter = 'alpha(opacity=' + op * 100 + ')';
 	        op += op * 0.1;
 	    }, 10);
 		}
