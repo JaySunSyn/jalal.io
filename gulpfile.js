@@ -54,19 +54,19 @@ gulp.task('elements', function () {
   return styleTask('elements', ['**/*.css']);
 });
 
-// Lint JavaScript
-gulp.task('jshint', function () {
-  return gulp.src([
-      'app/scripts/**/*.js',
-      'app/elements/**/*.js',
-      'app/elements/**/*.html'
-    ])
-    .pipe(reload({stream: true, once: true}))
-    .pipe($.jshint.extract()) // Extract JS from .html files
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-    .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
-});
+// // Lint JavaScript
+// gulp.task('jshint', function () {
+//   return gulp.src([
+//       'app/scripts/**/*.js',
+//       'app/elements/**/*.js',
+//       'app/elements/**/*.html'
+//     ])
+//     .pipe(reload({stream: true, once: true}))
+//     .pipe($.jshint.extract()) // Extract JS from .html files
+//     .pipe($.jshint())
+//     .pipe($.jshint.reporter('jshint-stylish'))
+//     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
+// });
 
 // Optimize Images
 gulp.task('images', function () {
@@ -197,7 +197,7 @@ gulp.task('serve', ['styles', 'elements', 'images'], function () {
   gulp.watch(['app/**/*.html'], reload);
   gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
   gulp.watch(['app/elements/**/*.css'], ['elements', reload]);
-  gulp.watch(['app/{scripts,elements}/**/*.js'], ['jshint']);
+  gulp.watch(['app/{scripts,elements}/**/*.js']);
   gulp.watch(['app/images/**/*'], reload);
 });
 
@@ -218,7 +218,7 @@ gulp.task('default', ['clean'], function (cb) {
   runSequence(
     ['copy', 'styles'],
     'elements',
-    ['jshint', 'images', 'fonts', 'html'],
+    ['images', 'fonts', 'html'],
     'vulcanize', 'precache',
     cb);
 });
