@@ -18,8 +18,6 @@ ADD bower.json /bower.json
 Add .bowerrc /.bowerrc
 ADD gulpfile.js /gulpfile.js
 ADD package.json /package.json
-ADD tasks /tasks
-ADD .netrc /root/.netrc
 
 # Force https instead of ssh for github
 RUN git config --global url."https://github".insteadOf "git://github"
